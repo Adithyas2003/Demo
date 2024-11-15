@@ -19,7 +19,7 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="addproduct">Addproduct</a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="logout">Logout</a>
@@ -27,5 +27,32 @@
           </ul>
         </div>
       </nav>
+
+      
+<div class="container">
+  <div class="row">
+    {% for pro in products %}
+    <div class="col-lg-4">
+      <div class="card" style="width:400px"  >
+        <img class="card-img-top" src="{{pro.img.url}}" alt="Card image" style="width:100%;height: 400px;">
+        <div class="card-body">
+          <h4 class="card-title">{{pro.name}}</h4>
+          <p class="card-text">{{pro.dis}}</p>
+          <a href="#" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
+      </div>
+  
+    {% endfor %}
+  </div>
+</div>
+
+  
+  
+
+
+
+
+
 </body>
 </html>

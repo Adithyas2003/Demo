@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .models import *
 
 def e_shop_login(req):
     if 'shop' in req.session:
@@ -25,7 +26,28 @@ def e_shop_logout(req):
     return redirect(e_shop_login)
 
 def shop_home(req):
+    data=Product.objects.all()
     if 'shop' in req.session:
-        return render(req,'shop/home.html')
+        return render(req,'shop/home.html',{'products':data})
+    else:
+        return redirect(e_shop_login)
+
+
+def add_product(req):
+    if 'shop' in req.session:
+        if req.method=='POST':
+            pid=req.POST['pid']
+            name=req.POST['name']
+            descrip=req.POST['descrip']
+            price=req.POST['price']
+            o_price=req.POST['off_price']
+            stock=req.POST['stock']
+            file=req.FILES['img']
+            data=Product.objects.create(pid=pid,name=name,dis=descrip,price=price,offer_price=o_price,stock=stock,img=file)
+
+            data.save()
+            return redirect(shop_home)
+        else:
+            return render(req,'shop/addproduct.html')
     else:
         return redirect(e_shop_login)

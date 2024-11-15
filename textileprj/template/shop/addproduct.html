@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Add Products Page</title>
+     
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ </head>
+ 
+ <body>
+     <div class="container mt-5">
+         <h2 class="text-center mb-4">Add New Product</h2>
+         <form action="" method="post"  enctype="multipart/form-data" p-4 shadow-sm bg-white rounded">
+            {% csrf_token %}
+             
+             <div class="form-group">
+                 <label for="pid"><b>Product ID</b></label>
+                 <input type="text" class="form-control" name="pid" id="pid" placeholder="Enter product ID">
+             </div>
+ 
+             <div class="form-group">
+                 <label for="name"><b>Product Name</b></label>
+                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
+             </div>
+ 
+             <div class="form-group">
+                 <label for="dis"><b>Description</b></label>
+                 <textarea class="form-control" name="descrip" id="descrip" rows="3" placeholder="Enter product description"></textarea>
+             </div>
+ 
+             <div class="form-group">
+                 <label for="price"><b>Price</b></label>
+                 <input type="number" class="form-control" name="price" id="price" placeholder="Enter price">
+             </div>
+ 
+             <div class="form-group">
+                 <label for="offer_price"><b>Offer Price</b></label>
+                 <input type="number" class="form-control" name="off_price" id="offer_price" placeholder="Enter offer price">
+             </div>
+ 
+             <div class="form-group">
+                 <label for="stock"><b>Stock</b></label>
+                 <input type="number" class="form-control" name="stock" id="stock" placeholder="Enter stock quantity">
+             </div>
+ 
+             <div class="form-group">
+                 <label for="image"><b>Image</b></label>
+                 <input type="file" class="form-control-file" name="img" id="image">
+             </div>
+ 
+             <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+         </form>
+     </div>
+ 
+     
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ </body>
+ 
+ </html>
+ 
