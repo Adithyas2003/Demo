@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import *
+import os
 
 def e_shop_login(req):
     if 'shop' in req.session:
@@ -51,3 +52,30 @@ def add_product(req):
             return render(req,'shop/addproduct.html')
     else:
         return redirect(e_shop_login)
+def edit_product(req,pid):
+    if req.method=='POST':
+        p_id=req.POST['pid']
+        name=req.POST['name']
+        descrip=req.POST['descrip']
+        price=req.POST['price']
+        off_price=req.POST['off_price']
+        stock=req.POST['stock']
+        file=req.FILES.get('img')
+        if file:
+            Product.objects.filter(pk=pid).update(pid=p_id,name=name,dis=descrip,price=price,offer_price=off_price,stock=stock)
+            data=Product.objects.get(pk=pid)
+            data.img=file
+            data.save()
+        else:
+            Product.objects.filter(pk=pid).update(pid=p_id,name=name,dis=descrip,price=price,offer_price=off_price,stock=stock)
+        return redirect(shop_home)
+    else:
+        data=Product.objects.get(pk=pid)
+        return render(req,'shop/edit.html',{'data':data})
+def delete_product(req,pid):
+    data=Product.objects.get(pk=pid)
+    file=data.img.url
+    file=file.split('/')[-1]
+    os.remove('media/'+file)
+    data.delete()
+    return redirect(shop_home)
