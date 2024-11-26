@@ -8,6 +8,7 @@ urlpatterns = [
     path('addproduct',views.add_product),
     path('edit_product/<pid>',views.edit_product),
     path('delete_product/<pid>',views.delete_product),
+    path('view_bookings',views.view_bookings),
 
 
     path('register',views.register),
@@ -20,7 +21,6 @@ urlpatterns = [
     path('cart_pro_buy/<cid>',views.cart_pro_buy),
     path('bookings',views.bookings),
     path('pro_buy/<pid>',views.pro_buy),
-
 
 
 ]

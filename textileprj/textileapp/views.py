@@ -87,6 +87,10 @@ def delete_product(req,pid):
     data.delete()
     return redirect(shop_home)
 
+def view_bookings(req):
+    buy=Buy.objects.all()[::-1]
+    return render(req,'shop/view_bookings.html',{'buy':buy})
+
 
 #-----------------------------------------user----------------------------------
 
@@ -183,3 +187,4 @@ def bookings(req):
     user=User.objects.get(username=req.session['user'])
     buy=Buy.objects.filter(user=user)[::-1]
     return render(req,'user/bookings.html',{'bookings':buy})
+
