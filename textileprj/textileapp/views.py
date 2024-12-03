@@ -4,6 +4,8 @@ from django.contrib import messages
 from .models import *
 import os
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 
 def e_shop_login(req):
     if 'shop' in req.session:
@@ -102,6 +104,7 @@ def register(req):
         username=req.POST['uname']
         email=req.POST['email']
         password=req.POST['password']
+        send_mail('codecreated', 'eshop account', settings.EMAIL_HOST_USER, [email])
         
         try:
             data=User.objects.create_user(first_name=username,email=email,username=email,password=password)
